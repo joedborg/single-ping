@@ -155,7 +155,7 @@ sudo cargo test
 
 ## License
 
-[Your chosen license here - e.g., MIT, Apache-2.0]
+Apache-2.0
 
 ## Contributing
 

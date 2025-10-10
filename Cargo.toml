@@ -1,7 +1,9 @@
 [package]
 name = "single-ping"
+description = "Send single pings written in pure Rust"
 version = "0.1.0"
 edition = "2024"
+license = "Apache-2.0"
 
 [dependencies]
 socket2 = { features = ["all"], version = "0.6.0" }
