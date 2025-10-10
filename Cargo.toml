@@ -1,6 +1,7 @@
 [package]
 name = "single-ping"
 description = "Send single pings written in pure Rust"
+repository = "https://github.com/joedborg/single-ping"
 version = "0.1.0"
 edition = "2024"
 license = "Apache-2.0"
