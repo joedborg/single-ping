@@ -75,19 +75,19 @@ pub fn ping(host: &str, timeout: u64, size: u64) -> Result<PingResult, Box<dyn s
                 IpAddr::V6(_) => validate_icmpv6_reply(&buffer, bytes_received),
             };
 
-            return Ok(PingResult {
+            Ok(PingResult {
                 dropped: !is_valid,
                 latency_ms: latency,
-            });
+            })
         }
         Err(_) => {
             // Timeout or other error
             let end_time = Instant::now();
             let latency = end_time.duration_since(start_time).as_millis() as u64;
-            return Ok(PingResult {
+            Ok(PingResult {
                 dropped: true,
                 latency_ms: latency,
-            });
+            })
         }
     }
 }
@@ -124,7 +124,7 @@ fn calculate_icmp_checksum(packet: &[u8]) -> u16 {
     }
 
     // One's complement
-    return !sum as u16;
+    !sum as u16
 }
 
 /// Resolves a hostname or IP address string to an `IpAddr`.
@@ -151,19 +151,19 @@ fn resolve_host(host: &str) -> Result<IpAddr, std::io::Error> {
     match address.to_socket_addrs() {
         Ok(mut addrs) => {
             if let Some(addr) = addrs.next() {
-                return Ok(addr.ip());
+                Ok(addr.ip())
             } else {
-                return Err(std::io::Error::new(
+                Err(std::io::Error::new(
                     std::io::ErrorKind::NotFound,
                     format!("No addresses found for host: {}", host),
-                ));
+                ))
             }
         }
         Err(e) => {
-            return Err(std::io::Error::new(
+            Err(std::io::Error::new(
                 std::io::ErrorKind::HostUnreachable,
                 format!("Failed to resolve host {}: {}", host, e),
-            ));
+            ))
         }
     }
 }
@@ -210,7 +210,7 @@ fn build_icmpv4_packet(size: u64) -> Vec<u8> {
     packet[2] = (checksum >> 8) as u8;
     packet[3] = (checksum & 0xff) as u8;
 
-    return packet;
+    packet
 }
 
 /// Builds an ICMPv6 Echo Request packet.
@@ -250,7 +250,7 @@ fn build_icmpv6_packet(size: u64) -> Vec<u8> {
         packet[i] = (i % 256) as u8;
     }
 
-    return packet;
+    packet
 }
 
 /// Validates an ICMPv4 Echo Reply packet.
@@ -271,9 +271,9 @@ fn validate_icmpv4_reply(buffer: &[std::mem::MaybeUninit<u8>], bytes_received: u
     if bytes_received >= 28 {
         // IP header (20) + ICMP header (8)
         let icmp_type = unsafe { buffer[20].assume_init() }; // ICMP type is at offset 20 (after IP header)
-        return icmp_type == 0; // Echo Reply
+        icmp_type == 0// Echo Reply
     } else {
-        return false;
+        false
     }
 }
 
@@ -294,9 +294,9 @@ fn validate_icmpv6_reply(buffer: &[std::mem::MaybeUninit<u8>], bytes_received: u
     // For ICMPv6, no IP header to skip, ICMP header starts immediately
     if bytes_received >= 8 {
         let icmp_type = unsafe { buffer[0].assume_init() };
-        return icmp_type == 129; // ICMPv6 Echo Reply
+        icmp_type == 129// ICMPv6 Echo Reply
     } else {
-        return false;
+        false
     }
 }
 
