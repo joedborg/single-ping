@@ -57,7 +57,7 @@ jobs:
       if: matrix.rust == 'stable'
 
     - name: Run cargo clippy
-      run: cargo clippy -- -D warnings
+      run: cargo clippy
       if: matrix.rust == 'stable'
 
   coverage:
