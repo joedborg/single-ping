@@ -159,12 +159,10 @@ fn resolve_host(host: &str) -> Result<IpAddr, std::io::Error> {
                 ))
             }
         }
-        Err(e) => {
-            Err(std::io::Error::new(
-                std::io::ErrorKind::HostUnreachable,
-                format!("Failed to resolve host {}: {}", host, e),
-            ))
-        }
+        Err(e) => Err(std::io::Error::new(
+            std::io::ErrorKind::HostUnreachable,
+            format!("Failed to resolve host {}: {}", host, e),
+        )),
     }
 }
 
@@ -271,7 +269,7 @@ fn validate_icmpv4_reply(buffer: &[std::mem::MaybeUninit<u8>], bytes_received: u
     if bytes_received >= 28 {
         // IP header (20) + ICMP header (8)
         let icmp_type = unsafe { buffer[20].assume_init() }; // ICMP type is at offset 20 (after IP header)
-        icmp_type == 0// Echo Reply
+        icmp_type == 0 // Echo Reply
     } else {
         false
     }
@@ -294,7 +292,7 @@ fn validate_icmpv6_reply(buffer: &[std::mem::MaybeUninit<u8>], bytes_received: u
     // For ICMPv6, no IP header to skip, ICMP header starts immediately
     if bytes_received >= 8 {
         let icmp_type = unsafe { buffer[0].assume_init() };
-        icmp_type == 129// ICMPv6 Echo Reply
+        icmp_type == 129 // ICMPv6 Echo Reply
     } else {
         false
     }
