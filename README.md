@@ -4,12 +4,12 @@ A simple, lightweight ICMP ping library for Rust that supports both IPv4 and IPv
 
 ## Features
 
-- 🌐 Support for both IPv4 and IPv6
-- 🎯 Simple, easy-to-use API
-- ⚡ Synchronous ping operations
-- 🔍 DNS hostname resolution
-- 📊 Latency measurement in milliseconds
-- 🛡️ Packet validation
+- Support for both IPv4 and IPv6
+- Simple API
+- Synchronous ping operations
+- DNS hostname resolution
+- Latency measurement in milliseconds
+- Packet validation
 
 ## Installation
 
@@ -17,7 +17,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-single-ping = "0.1.0"
+single-ping = "0.1.1"
 ```
 
 ## Usage
@@ -123,10 +123,10 @@ Run your terminal or IDE as Administrator.
 
 ## Supported Platforms
 
-- ✅ Linux
-- ✅ macOS
-- ✅ Windows
-- ✅ Other Unix-like systems
+- Linux
+- macOS
+- Windows
+- Other Unix-like systems
 
 ## How It Works
 
