@@ -4,8 +4,8 @@ A simple, lightweight ICMP ping library for Rust that supports both IPv4 and IPv
 
 ## Features
 
-- Support for both IPv4 and IPv6
 - Simple API
+- Support for both IPv4 and IPv6
 - Synchronous ping operations
 - DNS hostname resolution
 - Latency measurement in milliseconds
@@ -142,11 +142,14 @@ Run your terminal or IDE as Administrator.
 Run the examples with elevated privileges:
 
 ```bash
-# Basic ping example (if you create one)
 sudo cargo run --example basic_ping
+```
 
 # Run tests
+
+```bash
 sudo cargo test
+
 ```
 
 ## Dependencies
