@@ -2,9 +2,9 @@
 name = "single-ping"
 description = "Send single pings written in pure Rust"
 repository = "https://github.com/joedborg/single-ping"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 license = "Apache-2.0"
 
 [dependencies]
-socket2 = { features = ["all"], version = "0.6.0" }
+socket2 = { features = ["all"], version = "0.6.2" }
