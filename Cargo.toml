@@ -7,4 +7,4 @@ edition = "2024"
 license = "Apache-2.0"
 
 [dependencies]
-socket2 = { features = ["all"], version = "0.6.2" }
+socket2 = { features = ["all"], version = "0.6.3" }
